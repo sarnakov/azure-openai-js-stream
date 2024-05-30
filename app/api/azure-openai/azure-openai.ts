@@ -28,6 +28,10 @@ export class AzureOpenAI {
       body: jsonString,
     });
 
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+
     const stream = this.createStreamFromResponse(response);
     return stream;
   }
